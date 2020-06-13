@@ -3,27 +3,36 @@ const axios = require('axios');
 require('dotenv').config();
 const chalk = require('chalk');
 
-const sourceUri = 'https://newsapi.org/v2/sources?language=en';
+const srcURI = 'https://newsapi.org/v2/top-headlines?sources=';
 
-// axios({
-// 	method: 'get',
-// 	url: 'https://newsapi.org/v2/sources?language=en',
-// 	headers: {
-// 		'x-api-key': process.env.API_KEY,
-// 	},
-// })
-// 	.then(response => {
-// 		console.log(response.data);
-// 	})
-// 	.catch(function (error) {
-// 		console.log(error);
-// 	});
+const fetchData = async srcID => {
+	try {
+		const response = await axios.get(srcURI + srcID, {
+			headers: { 'x-api-key': process.env.API_KEY },
+		});
+		const data = await response.data;
+		console.log(
+			'🌈 ' +
+				chalk.bgCyanBright.black.bold(data.articles[0].source.name) +
+				' ☀️' +
+				'\n'
+		);
+		const feed = data.articles;
+		feed.map(({ title, description, url }, index) => {
+			console.log(chalk.yellow.bold(index + 1 + ')' + ' ' + title + ' 🌈'));
+			console.log(chalk.green(description));
+			console.log(chalk.blueBright.underline(url) + '\n\n');
+		});
+	} catch (err) {
+		console.error(err.message);
+	}
+};
 
 inquirer
 	.prompt([
 		{
 			type: 'list',
-			message: chalk.blue('Pick a source to recieve news from 🌈'),
+			message: chalk.blue.bold('Pick a source to load news from 📚'),
 			name: 'source',
 			choices: [
 				'bbc-news',
@@ -47,12 +56,9 @@ inquirer
 		},
 	])
 	.then(answers => {
-		console.log(answers);
+		console.log('\n');
+		fetchData(answers.source);
 	})
-	.catch(error => {
-		if (error.isTtyError) {
-			// Prompt couldn't be rendered in the current environment
-		} else {
-			// Something else when wrong
-		}
+	.catch(err => {
+		console.error(err);
 	});
