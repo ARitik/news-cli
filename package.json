@@ -1,19 +1,27 @@
 {
-  "name": "news-cli",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^0.19.2",
-    "chalk": "^4.1.0",
-    "dotenv": "^8.2.0",
-    "inquirer": "^7.1.0"
-  }
+	"name": "whatsnews",
+	"version": "1.0.0",
+	"description": "CLI Tool to fetch latest top-trending news",
+	"main": "index.js",
+	"bin": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"news",
+		"news-api"
+	],
+	"author": "Ambadi Ritik",
+	"license": "MIT",
+	"dependencies": {
+		"axios": "^0.19.2",
+		"chalk": "^4.1.0",
+		"dotenv": "^8.2.0",
+		"inquirer": "^7.1.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ARitik/news-cli.git"
+	}
 }
