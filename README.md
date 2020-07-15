@@ -3,6 +3,7 @@ A CLI Tool built using Inquirer that fetches the latest news updates based on so
 
 ### Installation 
 Navigate to desired directory using the terminal. Enter the following command
+
 ```git clone https://github.com/ARitik/news-cli.git```
 
 To run , enter ```node index.js```
